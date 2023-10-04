@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AvatarControle : MonoBehaviour
 {
+    public GameObject snowballCloneTemplate;
     float currentSpeed, walkingSpeed = 2, runningSpeed = 4;
     private float turningSpeed=180;
     Animator MyAnimator;
@@ -35,6 +36,14 @@ public class AvatarControle : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             transform.Rotate(Vector3.up,-turningSpeed * Time.deltaTime);
+        }
+
+        if (Input.GetMouseButtonDown(0)) 
+        {
+            GameObject newGO = Instantiate(snowballCloneTemplate);
+            SnowballControl mySnowball = newGO.GetComponent<SnowballControl>();
+
+            mySnowball.ImThowingYou(this);
         }
 
     }
