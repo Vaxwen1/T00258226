@@ -11,8 +11,7 @@ public class SnowballControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        rb.velocity = new Vector3 (0,20,-40);
+
     }
 
     // Update is called once per frame
@@ -21,10 +20,21 @@ public class SnowballControl : MonoBehaviour
         
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        print("Ouch");
+
+        DealWithHit thingIHit= collision.gameObject.GetComponent<DealWithHit>();
+        if (thingIHit != null ) 
+        {
+            thingIHit.IHitYou();
+        }
+    }
+
     internal void ImThowingYou(AvatarControle avatarControle)
     {
-        transform.position =avatarControle.transform.position + 2 * Vector3.up + 3 * avatarControle.transform.forward;
-        rb=rb.GetComponent<Rigidbody>();
-        rb.velocity = 10 * (2 * Vector3.up + 3 * avatarControle.transform.forward);
+        transform.position =avatarControle.transform.position + 1  * Vector3.up + 1 * avatarControle.transform.forward;
+        rb=GetComponent<Rigidbody>();
+        rb.velocity = 4 * (2 * Vector3.up + 3 * avatarControle.transform.forward);
     }
 }
