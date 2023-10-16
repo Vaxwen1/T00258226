@@ -21,13 +21,7 @@ public class AvatarControle : MonoBehaviour
         currentSpeed = walkingSpeed;
         MyAnimator = GetComponent<Animator>();
     }
-    void Jump() 
-    {
-        if (Input.GetKeyDown(KeyCode.Space)) 
-        {
-            rb.velocity = new Vector3(rb);
-        }
-    }
+    
     // Update is called once per frame
     void Update()
     {
