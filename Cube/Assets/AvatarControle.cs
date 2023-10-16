@@ -4,20 +4,30 @@ using UnityEngine;
 
 public class AvatarControle : MonoBehaviour
 {
+   
     public GameObject snowballCloneTemplate;
     float currentSpeed, walkingSpeed = 2, runningSpeed = 4;
-    private float turningSpeed=180;
-    public float jumpSpeed;
-
+    private float turningSpeed = 180;
     private float ySpeed;
+    public float jumpForce =7f;
+    public float gravity = 1;
     Animator MyAnimator;
+    public Rigidbody rb;
+    
+
     // Start is called before the first frame update
     void Start()
     {
         currentSpeed = walkingSpeed;
         MyAnimator = GetComponent<Animator>();
     }
-
+    void Jump() 
+    {
+        if (Input.GetKeyDown(KeyCode.Space)) 
+        {
+            rb.velocity = new Vector3(rb);
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -27,11 +37,7 @@ public class AvatarControle : MonoBehaviour
 
         ySpeed += Physics.gravity.y * Time.deltaTime;
 
-        if (Input.GetButtonDown("Jump")) 
-        {
-            ySpeed = jumpSpeed;
-        }
-
+        
         if (Input.GetKey(KeyCode.W)) 
         {
             MyAnimator.SetBool("iswalking", true);
